@@ -34,7 +34,7 @@ let url: string = ''
 if (path && path.value) {
   url = path.value.replace(/^..\//, '')
 } else if (name && name.value) {
-  url = `/src/common/${name.value}`
+  url = import.meta.env.MODE === 'development' ? `/src/common/${name.value}`: `../src/common/${name.value}`
 }
 
 const absolutePath = new URL(url, metaUrl || '').href
