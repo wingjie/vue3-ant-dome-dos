@@ -87,6 +87,7 @@
             rules: 'Array',
             placeHolder: 'string'
             options: 'computed(() => {......}) '
+            customRender(a:any,b:any,c:any){return [module,argument]}
             update:value=(value: any) => {console.log(value)}
             change=({value}) => {console.log(value)}
             blur=({value}) => {console.log(value)}
@@ -108,6 +109,8 @@
 | options | radio-group、checkbox-group、select的option固定配置  | array<{value, label, [disabled, key, title]}> | -- |
 | formItemAttr | Form.item的一些参数(https://www.antdv.com/components/form-cn#Form-Item) ，需要主要此处的formItemAttr中的属性会覆盖formModel中相同的属性 | object | -- |
 | config | 每个item的一些参数以及各种方法，此处以input为例（https://www.antdv.com/components/input-cn#Input） ，需要主要此处的config中的属性会覆盖formModel中相同的属性，其中的options配置可以作用于select下拉内容动态改变;其中isCore属性默认为TRUE，表示正常展示，当isCore为false时表示直接展示文本 | object | -- |
+| config.customRender | 自定义渲染方法，用来直接渲染组件，其中a参数包含filed、record、rowIndex、value参数，b参数包含同级的数据，c参数表示当前的formModel数据，返回值中的module表示组件，argument表示需要参入组建的参数 | fn | -- |
+
 ### formData(表单数据)
 
 ```js

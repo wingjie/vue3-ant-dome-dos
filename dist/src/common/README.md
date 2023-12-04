@@ -2,7 +2,7 @@
 
 #### 添加子仓库命令
   ##### 将子仓库远程源地址添加本地
-git remote add subtree http://10.12.97.1/galaxy-frontend/galaxy-common.git
+git remote add subtree http://10.12.97.1/galaxy/galaxy-universe-fe.git
   ##### 将子仓库添加本地具体位置命令
 git subtree add --prefix=src/common subtree master
 
