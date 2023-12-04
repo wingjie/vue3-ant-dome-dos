@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
   const useInspector = (option) => (mode === 'debug' ? Inspector(option) : null)
 
   return {
-    base: `dist`,
+    base: './',
     plugins: [
       icon(iconConfigData),
       writeInCode(),
