@@ -1,0 +1,1 @@
+System.register(["./index-legacy.ed210335.js"],(function(t){"use strict";var e;return{setters:[function(t){e=t.P}],execute:function(){t("d",(function(t){const r=t();if("array"===e(r)){const[t,e,n]=r;return{formData:t,fieldList:e,formModel:n}}return r}))}}}));
