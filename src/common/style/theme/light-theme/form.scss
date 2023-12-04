@@ -1,0 +1,25 @@
+:deep(.ant-form-item-with-help) .ant-form-item-explain {
+  min-height: 12px
+}
+:deep(.ant-form-item-explain-error) {
+  font-size: 12px;
+  line-height: 12px;
+}
+:deep(.ant-form-item) {
+  margin-bottom: 5px;
+}
+.galaxy-radio-inner::after {
+  background: transparent;
+  width: 29px;
+  height: 29px;
+  left: 0;
+  top: 0;
+  border: 9px solid var(--galaxy-primary-color);
+}
+.galaxy-radio-disabled .galaxy-radio-inner::after {
+  border-color: #CFD0D1;
+  background-color: transparent;
+}
+.galaxy-checkbox-checked .galaxy-checkbox-inner {
+  border-color: var(--galaxy-primary-color)
+}

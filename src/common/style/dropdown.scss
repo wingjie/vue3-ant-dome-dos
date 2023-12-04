@@ -1,0 +1,23 @@
+div[class*='dropdown'] {
+  overflow: hidden;
+  ul[class*='dropdown-menu'] {
+    padding: 0;
+    line-height: 16px;
+    li[class*='dropdown-menu-item'] {
+      line-height: 30px;
+      color: #262626;
+      &:hover {
+        color: #262626;
+        background-color: #e7f0f8;
+      }
+    }
+  }
+  ul[class*='-dropdown-menu-root'] {
+    padding: 8px 0;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+}
+div[class*='-dropdown-content'] {
+
+}

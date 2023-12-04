@@ -1,0 +1,35 @@
+.galaxy-table {
+  color: var(--galaxytext-minor-color);
+  background-color: transparent;
+}
+.galaxy-table-wrapper {
+  background-color: transparent;
+}
+.galaxy-table-small .galaxy-table-thead > tr > th {
+  background: #E7F0F8;
+  color: #888;
+  height: 42px;
+  font-size: 12px;
+}
+.galaxy-table-cell-fix-left, .galaxy-table-cell-fix-right {
+  background-color: $content-block-bg;
+}
+.galaxy-table-thead > tr > th:not(:last-child):not(.galaxy-table-selection-column):not(.galaxy-table-row-expand-icon-cell):not([colspan])::before {
+  width: 0;
+}
+.galaxy-table-tbody > tr > td {
+  height: 54px;
+  border-bottom: 1px solid #E7F0F8;
+}
+.galaxy-table-column-sorters, .galaxy-table-filter-column {
+  justify-content: left;
+}
+.galaxy-table-column-sorter-inner, .galaxy-table-filter-trigger {
+  color: #BBCEDF;
+}
+.galaxy-table-column-title {
+  flex: unset;
+}
+.galaxy-table-tbody > tr.galaxy-table-row:hover > td, .galaxy-table-tbody > tr > td.galaxy-table-cell-row-hover{
+  background: #FBFDFE;
+}

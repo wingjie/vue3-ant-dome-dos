@@ -1,0 +1,80 @@
+$height: 28px;
+$font-color: #888;
+@mixin heightMixin {
+  height: $height;
+  line-height: $height;
+}
+ul[class*='-pagination'] {
+  color: $font-color;
+}
+li[class*='pagination-total-text'] {
+  line-height: $height;
+  height: $height;
+}
+li[class*='pagination-item'], li[class*='pagination-prev'], li[class*='pagination-next'] {
+  width: $height;
+  min-width: $height;
+  height: $height;
+  line-height: $height;
+  border: 0;
+}
+li[class*='pagination-prev'], li[class*='pagination-next'] {
+  button[class*='pagination-item-link'] {
+    border: 0;
+    border-radius: 4px;
+    span[class*='icon'] {
+      vertical-align: -0.2em;
+    }
+  }
+}
+li[class*='pagination-item'] {
+  a {
+    color: $font-color;
+  }
+}
+li[class*='pagination-item-active'] {
+  background: #E7F0F8;
+  border-radius: 8px;
+  a {
+    color: #262626;
+  }
+}
+li[class*='pagination-options'] {
+  margin-left: 8px;
+  div[class*='pagination-options-size-changer'] {
+    div[class*='select-selector'] {
+      height: $height;
+    }
+  }
+}
+div[class*='pagination-options-quick-jumper'] {
+  @include heightMixin;
+  input {
+    @include heightMixin;
+  }
+}
+div[class*='pagination-options-size-changer'] {
+  div[class*='select-selector'] {
+    span[class*='select-selection-search'] {
+      input[class*='select-selection-search-input'] {
+        height: $height;
+      }
+    }
+    span[class*='select-selection-item'] {
+      color: rgba(69,69,69,0.9);
+      height: $height;
+      line-height: $height!important;
+    }
+  }
+}
+div[class*='table-wrapper'] {
+  ul[class*='-pagination'] {
+    margin-bottom: 0;
+  }
+}
+div[class*='pagination-options-quick-jumper'] {
+  input {
+    border-color: #DBE6F1;
+    border-radius: 6px;
+  }
+}
