@@ -48,7 +48,7 @@ const props = withDefaults(defineProps<propMsg>(), {
   formData: () => ({ data: [] }),
 })
 const { column, formData, tableModel, record, index, rowMsg } = toRefs(props)
-const unit = ref<any>({ label: record.value[record.value.key], cursorDic: [] })
+const unit = ref<any>({ label: record.value[column.value.key], cursorDic: [] })
 
 watchEffect(() => {
   findCodeItem({

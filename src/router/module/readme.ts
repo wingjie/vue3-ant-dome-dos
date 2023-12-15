@@ -67,5 +67,11 @@ export default {
       meta: { title: 'hook' },
       component: () => import('@/views/hook/index.vue'),
     },
+    {
+      path: 'jsonSchema',
+      name: 'jsonSchema',
+      meta: { title: 'jsonSchema' },
+      component: () => import('@/views/jsonSchema/index.vue'),
+    },
   ],
 }

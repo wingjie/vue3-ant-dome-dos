@@ -14,7 +14,7 @@
             v-bind="{
               onSearch: search,
               onReset: reset,
-              ...(button || {})
+              ...(button || {}),
             }"
             :setup="{
               search: { text: '搜索' },
@@ -80,22 +80,24 @@ const props = withDefaults(defineProps<propMsg>(), { presetButton: true })
 const { fieldList, formModel, formData, presetButton, onOff, button } =
   toRefs(props)
 
-console.log('button', button)
-
 const fieldListMap = ref()
 
 watchEffect(() => {
-  fieldListMap.value = fieldList.value.map((item: any) => {
-    return {
-      ...item,
-      label: '',
-      title: item.label,
-      config: {
-        placeholder: item.label,
-        ...(item?.config ? item.config : {}),
-      },
-    }
-  })
+  fieldListMap.value = fieldList.value
+    .map((item: any) => {
+      return {
+        ...item,
+        label: '',
+        title: item.label,
+        config: {
+          placeholder: item.label,
+          ...(item?.config ? item.config : {}),
+        },
+      }
+    })
+    .filter((item: any) => {
+      return unref(item.checked) !== false
+    })
 })
 
 const defaultModel = $defineFormModel(() => {

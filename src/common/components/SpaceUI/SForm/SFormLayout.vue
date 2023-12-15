@@ -14,7 +14,28 @@
         }"
       >
         <template v-if="field.type">
-          <slot
+          <!-- <a-row class="hint" style="width: 100%">
+            <a-col
+              v-if="field?.hint"
+              v-bind="field.formItemAttr?.labelCol || {}"
+              :style="{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+              }"
+            >
+              <Hint
+                :title="field?.hint?.title"
+                :content="
+                  typeof field.hint === 'string'
+                    ? field.hint
+                    : field.hint.content
+                "
+              ></Hint
+              >&nbsp;&nbsp;&nbsp;&nbsp;
+            </a-col>
+          </a-row> -->
+          <SlotOut
             v-if="
               field.type && (field.type === 'slot' || field.type === 'slotOut')
             "
@@ -22,7 +43,11 @@
             :field="field"
             :mapData="formDataMap"
             :data="formData"
-          ></slot>
+          >
+            <template v-for="(value, name) of $slots" #[name]="slotData">
+              <slot :name="name" v-bind="slotData"></slot>
+            </template>
+          </SlotOut>
           <FormItem
             v-if="field.isForm"
             ref="formItemRef"
@@ -78,9 +103,13 @@
                 "
                 :name="`${field.key}${field?.config?.key}In`"
                 :data="data.data"
+                :model="modelData"
                 :field="data.field"
                 :mapData="formDataMap"
               />
+            </template>
+            <template v-for="(value, name) of $slots" #[name]="slotData">
+              <slot :name="name" v-bind="slotData"></slot>
             </template>
           </FormItem>
         </template>
@@ -93,6 +122,7 @@
 </template>
 <script setup lang="ts">
 import { get } from '@vueuse/core'
+import SlotOut from './SlotOut.vue'
 import {
   formModelType,
   fieldListType,
@@ -138,4 +168,9 @@ const fieldListMapFilter = computed(() => {
   })
 })
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.hint {
+  position: absolute;
+  bottom: 0px;
+}
+</style>

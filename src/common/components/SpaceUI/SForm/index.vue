@@ -45,10 +45,10 @@
           <template v-for="(value, name) of $slots" #[name]="slotData">
             <slot
               :name="name"
-              :model="modelData"
               :way="wayData"
               :extra="extra"
               v-bind="slotData"
+              :model="modelData"
             ></slot>
           </template>
         </SFormLayout>
@@ -84,10 +84,10 @@
           <template v-for="(value, name) of $slots" #[name]="slotData">
             <slot
               :name="name"
-              :model="modelData"
               :way="wayData"
               :extra="extra"
-              v-bind="slotData"
+              v-bind="{ ...slotData }"
+              :model="modelData"
             ></slot>
           </template>
         </SFormLayout>
@@ -175,6 +175,7 @@ const defaultFormModel = reactive<formModelType>({
     placeholder: `请填选`,
     'allow-clear': true,
     maxlength: 200,
+    'max-tag-count': 'responsive',
   },
 })
 const isScattered = computed(() => name?.value)

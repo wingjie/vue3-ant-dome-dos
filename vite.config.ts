@@ -38,6 +38,12 @@ export default defineConfig(({ mode }) => {
           'vuex',
           {
             '@/common/utils/autoImport': autoImportConfig,
+            '@vueuse/core': [
+              'computedAsync',
+              'useVModel',
+              ['get', '$get'],
+              // ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
+            ],
           },
         ],
         // eslint报错解决

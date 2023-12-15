@@ -26,6 +26,7 @@
     "galaxy-common-rely": "file:src/common",
     "insert-css": "^2.0.0",
     "js-beautify": "^1.14.3",
+    "json-schema-faker": "^0.5.4",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.3",
     "sql-formatter": "^6.1.1",

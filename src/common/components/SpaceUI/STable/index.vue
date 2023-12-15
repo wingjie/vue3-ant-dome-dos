@@ -116,10 +116,10 @@ const defaultTableModel = reactive<tableModelType>({
   columnsConfig: {
     align: 'left',
     disabled: false,
-    // resizable: true,
+    resizable: true,
     width: 150,
-    // minWidth: 100,
-    // maxWidth: 300,
+    minWidth: 100,
+    maxWidth: 1000,
     ellipsis: true, // 当需要showConfig时候，title又没有值的时候，这里需要false
   },
   config: {
@@ -129,12 +129,13 @@ const defaultTableModel = reactive<tableModelType>({
     maxlength: 200,
     isCore: true,
     'auto-size': { minRows: 1, maxRows: 5 },
+    'max-tag-count': 'responsive',
   },
   tableAttr: {
     rowKey: 'id',
-    // onResizeColumn(w: any, col: any) {
-    //   col.width = w
-    // },
+    onResizeColumn(w: any, col: any) {
+      col.width = w
+    },
     pagination: {
       size: 'large',
       'page-size-options': ['10', '20', '30', '40', '50'],

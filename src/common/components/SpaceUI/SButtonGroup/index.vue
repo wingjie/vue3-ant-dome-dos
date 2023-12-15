@@ -1,7 +1,7 @@
 <template>
   <div class="button-group flex">
     <a-space
-      :size="type === 'link' ? 1 : 5"
+      :size="type === 'link' ? 1 : 10"
       v-bind="space"
       class="space"
       v-if="!width"
@@ -17,7 +17,7 @@
             <slot :name="names" v-bind="slotData"></slot>
           </template>
         </ButtonContent>
-        <span class="interval">
+        <span class="interval" v-if="type === 'link' || !!interval">
           <slot
             :name="'interval'"
             :size="sizeCom"
@@ -25,7 +25,9 @@
             :type="type || item.type"
             v-bind="{ ...$attrs, ...item?.attr }"
           >
-            <span style="color: #dcdee0" v-if="type === 'link'">|</span>
+            <span style="color: #dcdee0">{{
+              typeof interval === 'string' ? interval : '|'
+            }}</span>
           </slot>
         </span>
       </template>
@@ -39,7 +41,12 @@
         "
       >
         <slot name="more">
-          <a-button :size="sizeCom" :type="type" v-bind="{ ...$attrs }">
+          <a-button
+            :size="sizeCom"
+            :type="type"
+            v-bind="{ ...$attrs }"
+            @click="$attrs[`onMore`]"
+          >
             <span class="more-btn-inner">
               <slot :name="`moreIB`">
                 <template v-if="moreCom.icon">
@@ -119,7 +126,7 @@
             <slot :name="names" v-bind="slotData"></slot>
           </template>
         </ButtonContent>
-        <span class="interval">
+        <span class="interval" v-if="type === 'link' || !!interval">
           <slot
             :name="'interval'"
             :size="sizeCom"
@@ -127,7 +134,9 @@
             :type="type || item.type"
             v-bind="{ ...$attrs, ...item?.attr }"
           >
-            <span style="color: #dcdee0" v-if="type === 'link'">|</span>
+            <span style="color: #dcdee0">{{
+              typeof interval === 'string' ? interval : '|'
+            }}</span>
           </slot>
         </span>
       </template>
@@ -221,6 +230,7 @@ const $slots = useSlots()
 interface propMsg {
   size?: 'small' | 'large' | 'middle'
   type?: 'primary' | 'link'
+  interval?: boolean | string
   setup?: {
     [p: string]: {
       text?: string
@@ -250,7 +260,8 @@ const props = withDefaults(defineProps<propMsg>(), {
   order: () => [],
   space: () => ({}),
 })
-const { size, type, setup, order, width, len, more, space } = toRefs(props)
+const { size, type, setup, order, width, len, more, space, interval } =
+  toRefs(props)
 
 const moreCom = computed(() => {
   return {
@@ -311,6 +322,18 @@ const defaultButtonList = reactive<
   { key: 'enable', text: '启用', type: 'primary' },
   { key: 'run', text: '执行', type: 'primary' },
   {
+    key: 'danger',
+    text: 'danger',
+    type: 'danger',
+    attr: {
+      style: {
+        color: '#FF8080',
+        border: '1px solid #FFD1D1',
+        backgroundColor: '#FFF5F5',
+      },
+    },
+  },
+  {
     key: 'delList',
     text: '批量删除',
     type: 'danger',
@@ -334,13 +357,13 @@ const defaultButtonList = reactive<
     key: 'import',
     text: '导入',
     attr: {},
-    icon: { key: 'pure-operation-import' },
+    icon: { key: 'pure-operation-import', style: { color: '#8EA1B3' } },
   },
   {
     key: 'export',
     text: '导出',
     attr: {},
-    icon: { key: 'pure-operation-derive' },
+    icon: { key: 'pure-operation-derive', style: { color: '#8EA1B3' } },
   },
   { key: 'save', text: '保存', type: 'primary', attr: {} },
   { key: 'search', text: '查询', type: 'primary', attr: {} },
@@ -360,13 +383,13 @@ const buttonListCom = computed(() => {
 })
 const showButtonCom = computed(() => {
   return buttonListCom.value
-    .slice(0, lenCom.value)
     .filter((item: any) => item.show)
+    .slice(0, lenCom.value)
 })
 const moreButtonCom = computed(() => {
   return buttonListCom.value
-    .slice(lenCom.value)
     .filter((item: any) => item.show)
+    .slice(lenCom.value)
 })
 
 watch(
