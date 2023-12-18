@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const jsonSchema = {
+const jsonSchema =ref({
   type: ['array', 'null'],
   description: '跟',
   items: {
@@ -38,7 +38,7 @@ const jsonSchema = {
     },
     required: ['bool', 'arr'],
   },
-}
+})
 
 const formData = ref({})
 
