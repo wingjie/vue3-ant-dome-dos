@@ -1,0 +1,1 @@
+System.register(["./index-legacy.0518d05a.js"],(function(t){"use strict";var e;return{setters:[function(t){e=t.P}],execute:function(){t({a:function(t){return t()},d:function(t){const n=t();if("array"===e(n)){const[t,e,r]=n;return{formData:t,fieldList:e,formModel:r}}return n}})}}}));

@@ -118,7 +118,7 @@ const groupChange = () => {
     jsonExample.value = jsonSchemaToJSON(jsonData.value as any)
   }
 }
-const jsonSchema = ref()
+let jsonSchema = ref()
 const jsonSchemaBlur = (val: string) => {
   if (isJSON(val)) {
     const copyJ = $cloneDeep(JSON.parse(val))

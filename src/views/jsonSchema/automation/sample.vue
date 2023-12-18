@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <JsonSchema v-model:data="jsonSchema" :is-disabled="false"></JsonSchema> -->
+    <JsonSchema v-model:data="jsonSchema" :is-disabled="false"></JsonSchema>
     formData: {{ formData }}<br />
     <SchemaToJson
       mode="string"
