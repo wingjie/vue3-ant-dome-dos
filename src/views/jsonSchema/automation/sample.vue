@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const jsonSchema =ref({
+const jsonSchema = ref({
   type: ['array', 'null'],
   description: '跟',
   items: {
