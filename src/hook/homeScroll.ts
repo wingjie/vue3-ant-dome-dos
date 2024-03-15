@@ -1,5 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 // import request from 'axios'
+function isMobileDevice() {
+  const userAgent = navigator.userAgent;
+  const mobileKeywords = ['Mobile', 'Android', 'iPhone', 'iPad', 'Windows Phone'];
+  return mobileKeywords.some(keyword => userAgent.includes(keyword));
+}
 
 export default function install(option: { modules: object }) {
   const modulesPath = reactive<
@@ -23,15 +28,16 @@ export default function install(option: { modules: object }) {
       return 0
     })
   })
-  const width = ref<string>('200px')
+  const width = ref<string>(isMobileDevice() ? '0px' : '200px')
   function getCurrentAnchor() {
     const mainContent = document.querySelector('.main-content')
     return mainContent
   }
   const value: [
-    { title?: string; url: string; context?: string; file: any }[],
+    { title?: string; url: string; context?: string; file: any , }[],
     () => any,
-    { value: string }
-  ] = [modulesPath, getCurrentAnchor, width]
+    { value: string },
+    Function
+  ] = [modulesPath, getCurrentAnchor, width, isMobileDevice]
   return value
 }

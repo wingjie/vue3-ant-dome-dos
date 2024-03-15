@@ -34,7 +34,8 @@ let url: string = ''
 if (path && path.value) {
   url = path.value.replace(/^..\//, '')
 } else if (name && name.value) {
-  url = `/src/common/${name.value}`
+  const baseUrl = import.meta.env.MODE !== 'development' ? '/vue3-ant-dome-dos' : ''
+  url = `${baseUrl}/src/common/${name.value}`
 }
 
 const absolutePath = new URL(url, metaUrl || '').href

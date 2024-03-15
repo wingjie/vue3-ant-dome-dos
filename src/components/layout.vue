@@ -9,7 +9,7 @@
       </template>
       <slot name="footer"></slot>
     </div>
-    <div class="right" v-if="modules">
+    <div class="right" v-if="modules && !isMobileDevice()">
       <a-anchor
         @click="(e: any) => e.preventDefault()"
         :getContainer="getCurrentAnchor"
@@ -34,9 +34,10 @@ interface propMsg {
 const props = withDefaults(defineProps<propMsg>(), {})
 const { modules } = toRefs(props)
 
-const [modulesPath, getCurrentAnchor, width] = installHomeScroll({
+const [modulesPath, getCurrentAnchor, width, isMobileDevice] = installHomeScroll({
   modules: modules.value,
 })
+
 </script>
 <style scoped lang="scss">
 .BulkList {
